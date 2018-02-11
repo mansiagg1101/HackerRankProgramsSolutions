@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static String acidNaming(String acid_name) {
+        
+        if(acid_name!=null && acid_name!="")
+        {
+            int size = acid_name.length();
+            if(size>=5)
+            {
+                String beginwith=acid_name.substring(0,5);
+                
+                String endWith=acid_name.substring(size-2,size);
+                       //  System.out.println("beginwith:"+beginwith);
+           // System.out.println("endWith"+endWith);
+
+                if(beginwith.equalsIgnoreCase("hydro") && endWith.equalsIgnoreCase("ic"))
+                {
+                    return "non-metal acid";
+                }
+                if(endWith.equalsIgnoreCase("ic"))
+                {
+                    return "polyatomic acid";
+                }
+                
+            }
+            if(size>=2)
+            {
+                String endWith=acid_name.substring(size-2,size);
+                if(endWith.equalsIgnoreCase("ic"))
+                {
+                    return "polyatomic acid";
+                }
+            }
+                    return "not an acid";       
+        }
+        
+        return "not an acid";
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        for(int a0 = 0; a0 < n; a0++){
+            String acid_name = in.next();
+            String result = acidNaming(acid_name);
+            System.out.println(result);
+        }
+        in.close();
+    }
+}
